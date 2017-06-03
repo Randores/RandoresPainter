@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.gmail.socraticphoenix.forge.randores.painter.translation.gui.TranslationScreen">
+  <grid id="27dc6" binding="panel1" layout-manager="GridLayoutManager" row-count="10" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="799" height="646"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <component id="92755" class="javax.swing.JTextField" binding="key">
+        <constraints>
+          <grid row="3" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <editable value="false"/>
+          <font size="16"/>
+        </properties>
+      </component>
+      <component id="6aa" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="18"/>
+          <text value="Key:"/>
+        </properties>
+      </component>
+      <component id="d8b4e" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="18"/>
+          <text value="English:"/>
+        </properties>
+      </component>
+      <component id="f28a7" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="5" column="2" row-span="3" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="18"/>
+          <text value="Translation:"/>
+        </properties>
+      </component>
+      <component id="9a9a9" class="javax.swing.JButton" binding="saveButton" default-binding="true">
+        <constraints>
+          <grid row="8" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="18"/>
+          <text value="Save"/>
+        </properties>
+      </component>
+      <component id="5bee5" class="javax.swing.JLabel" binding="translationProjectLabel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="20"/>
+          <text value="Translation Project: "/>
+        </properties>
+      </component>
+      <scrollpane id="d1bd9">
+        <constraints>
+          <grid row="3" column="0" row-span="3" col-span="2" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="840d" class="javax.swing.JList" binding="translations">
+            <constraints/>
+            <properties>
+              <font size="14"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
+      <scrollpane id="55e8a">
+        <constraints>
+          <grid row="7" column="0" row-span="1" col-span="2" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="3e20d" class="javax.swing.JList" binding="unfinishedTranslations">
+            <constraints/>
+            <properties>
+              <font size="14"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
+      <scrollpane id="a1bcd">
+        <constraints>
+          <grid row="5" column="3" row-span="3" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="7a4c9" class="javax.swing.JTextArea" binding="translation">
+            <constraints/>
+            <properties>
+              <font size="18"/>
+              <lineWrap value="true"/>
+              <wrapStyleWord value="true"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
+      <scrollpane id="dd50">
+        <constraints>
+          <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="c5ab3" class="javax.swing.JTextArea" binding="english">
+            <constraints/>
+            <properties>
+              <editable value="false"/>
+              <font size="18"/>
+              <lineWrap value="true"/>
+              <wrapStyleWord value="true"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
+      <component id="e01d3" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="4" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="18"/>
+          <text value="Language:"/>
+        </properties>
+      </component>
+      <component id="800fb" class="javax.swing.JTextField" binding="language">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <font size="16"/>
+        </properties>
+      </component>
+      <component id="8a1f3" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="18"/>
+          <text value="Translations:"/>
+        </properties>
+      </component>
+      <component id="34a83" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="18"/>
+          <text value="Empty Translations:"/>
+        </properties>
+      </component>
+      <component id="cda97" class="javax.swing.JButton" binding="exportButton" default-binding="true">
+        <constraints>
+          <grid row="9" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <font size="18"/>
+          <text value="Export"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
