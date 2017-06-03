@@ -23,7 +23,7 @@ apply plugin : 'net.sf.gapt'
 //End Plugins
 
 //Program Specific Variables (Fill these in)
-def programVersion = "0.0.0"
+def programVersion = "0.0.2"
 def programGroup = "com.gmail.socraticphoenix"
 def programName = "RandoresPainter"
 def repoName = "Main"

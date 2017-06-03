@@ -171,6 +171,14 @@ public class TranslationScreen {
 
             });
 
+            try {
+                this.translations.setListData(this.project.getTranslations().toArray());
+                this.unfinishedTranslations.setListData(this.project.getUnfinished().toArray());
+            } catch (IOException e) {
+                new ErrorScreen("Unable to load cache: " + e.getMessage()).display();
+                return this.frame;
+            }
+
             this.exportButton.addActionListener(e -> {
                 String lang = this.language.getText();
                 if (lang.isEmpty()) {
@@ -273,14 +281,6 @@ public class TranslationScreen {
                 }
             });
 
-            this.translations.setListData(this.project.getTranslations().toArray());
-            try {
-                this.unfinishedTranslations.setListData(this.project.getUnfinished().toArray());
-            } catch (IOException e) {
-                new ErrorScreen("Unable to load cache: " + e.getMessage()).display();
-                return this.frame;
-            }
-
             this.language.setText(this.project.lang);
 
             this.frame.setVisible(true);
@@ -292,8 +292,8 @@ public class TranslationScreen {
     }
 
     private void updateListData() {
-        this.translations.setListData(this.project.getTranslations().toArray());
         try {
+            this.translations.setListData(this.project.getTranslations().toArray());
             this.unfinishedTranslations.setListData(this.project.getUnfinished().toArray());
         } catch (IOException e) {
             new ErrorScreen("Unable to load cache: " + e.getMessage()).display();

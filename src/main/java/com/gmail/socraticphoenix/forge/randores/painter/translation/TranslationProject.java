@@ -41,12 +41,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class TranslationProject extends Project {
-    private List<Translation> translations;
     public String lang;
+    private List<Translation> translations;
 
     public TranslationProject(String name, File dir, JLSCConfiguration configuration) {
         super(name, dir, configuration);
@@ -71,25 +70,25 @@ public class TranslationProject extends Project {
 
         chooser.setDialogTitle("Choose assets lang file");
         int res = chooser.showOpenDialog(null);
-        if(res != JFileChooser.APPROVE_OPTION) {
+        if (res != JFileChooser.APPROVE_OPTION) {
             throw new IllegalStateException("File selection cancelled");
         }
 
         File assets = chooser.getSelectedFile();
 
-        if(assets.isDirectory()) {
+        if (assets.isDirectory()) {
             throw new IllegalStateException("Directory selected");
         }
 
         chooser.setDialogTitle("Choose randores lang file");
         res = chooser.showOpenDialog(null);
-        if(res != JFileChooser.APPROVE_OPTION) {
+        if (res != JFileChooser.APPROVE_OPTION) {
             throw new IllegalStateException("File selection cancelled");
         }
 
         File randores = chooser.getSelectedFile();
 
-        if(randores.isDirectory()) {
+        if (randores.isDirectory()) {
             throw new IllegalStateException("Directory selected");
         }
 
@@ -108,36 +107,24 @@ public class TranslationProject extends Project {
             }
         }
         this.translations = translations;
-        this.lang = assets.getName();
+        this.lang = assets.getName().replace(".lang", "");
         this.saveResources();
     }
 
     public void cleanTranslations() throws IOException {
         List<Translation> english = PainterApp.getEnglishTranslations();
-        Iterator<Translation> translationIterator = this.translations.iterator();
-        while (translationIterator.hasNext()) {
-            Translation next = translationIterator.next();
-            if(english.stream().noneMatch(t -> t.key.equals(next.key))) {
-                this.translations.remove(next);
-            }
-        }
+        this.translations.removeIf(o -> english.stream().noneMatch(t -> t.key.equals(o.key)));
     }
 
     public List<Translation> getTranslations() {
-        try {
-            this.cleanTranslations();
-        } catch (IOException ignore) {
-
-        }
         return this.translations;
     }
 
     public List<Translation> getUnfinished() throws IOException {
-        this.cleanTranslations();
         List<Translation> unfinished = new ArrayList<>();
         List<Translation> english = PainterApp.getEnglishTranslations();
-        for(Translation translation : english) {
-            if(this.translations.stream().noneMatch(t -> t.key.equals(translation.key))) {
+        for (Translation translation : english) {
+            if (this.translations.stream().noneMatch(t -> t.key.equals(translation.key))) {
                 unfinished.add(translation);
             }
         }
@@ -161,9 +148,10 @@ public class TranslationProject extends Project {
     public void loadResources() throws IOException, JLSCException {
         this.lang = this.configuration.getString("lang").get();
         JLSCArray translations = this.configuration.getArray("translations").get();
-        for(JLSCValue value : translations) {
+        for (JLSCValue value : translations) {
             this.translations.add(value.convert(Translation.class).get());
         }
+        this.cleanTranslations();
     }
 
     @Override
@@ -193,8 +181,12 @@ public class TranslationProject extends Project {
 
     @Override
     public void exportProject(File target) throws IOException, JLSCException {
+        if(!target.getName().endsWith(".zip")) {
+            target = new File(target.getAbsolutePath() + ".zip");
+        }
+        File finalTarget = target;
         Runnable save = () -> {
-            File assets = new File(tmp, "assets/randores/lang/" + lang.toLowerCase() + ".lang");
+            File assets = new File(tmp, "assets/randores/lang/" + lang + ".lang");
             File randores = new File(tmp, "assets/randores/resources/lang/" + lang.toLowerCase() + ".lang");
             assets.getParentFile().mkdirs();
             randores.getParentFile().mkdirs();
@@ -214,7 +206,7 @@ public class TranslationProject extends Project {
 
                 PainterApp.genMcMeta(this.tmp, "Randores translations: " + this.lang);
 
-                FileUtil.zipFile(tmp, target);
+                FileUtil.zipFile(tmp, finalTarget);
                 FileUtil.deleteDirectory(tmp);
             } catch (IOException e2) {
                 e2.printStackTrace();

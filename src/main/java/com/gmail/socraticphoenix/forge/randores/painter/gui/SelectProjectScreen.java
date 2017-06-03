@@ -192,7 +192,6 @@ public class SelectProjectScreen {
      * >>> IMPORTANT!! <<<
      * DO NOT edit this method OR call it in your code!
      *
-     * @noinspection ALL
      */
     private void $$$setupUI$$$() {
         panel1 = new JPanel();

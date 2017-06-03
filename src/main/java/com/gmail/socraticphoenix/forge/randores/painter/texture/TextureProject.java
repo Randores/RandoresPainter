@@ -200,6 +200,10 @@ public class TextureProject extends Project {
 
     @Override
     public void exportProject(File target) throws IOException, JLSCException {
+        if(!target.getName().endsWith(".zip")) {
+            target = new File(target.getAbsolutePath() + ".zip");
+        }
+        File finalTarget = target;
         Runnable save = () -> {
             try {
                 this.tmp.mkdirs();
@@ -249,9 +253,9 @@ public class TextureProject extends Project {
                     }
                 }
 
-                PainterApp.genMcMeta(this.tmp, "Randores textures: " + target.getName().replace(".zip", ""));
+                PainterApp.genMcMeta(this.tmp, "Randores textures: " + finalTarget.getName().replace(".zip", ""));
 
-                FileUtil.zipFile(this.tmp, target);
+                FileUtil.zipFile(this.tmp, finalTarget);
                 FileUtil.deleteDirectory(this.tmp);
             } catch (IOException e) {
                 e.printStackTrace();
